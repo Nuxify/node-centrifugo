@@ -1,6 +1,6 @@
 services:
   centrifugo:
-    image: centrifugo/centrifugo:v5.4.7
+    image: centrifugo/centrifugo:v5.4.9
     container_name: centrifugo
     mem_limit: "3g"
     restart: unless-stopped
