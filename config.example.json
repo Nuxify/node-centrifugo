@@ -1,5 +1,5 @@
 {
-  "port": 8000,
+  "port": 6050,
   "admin": true,
   "admin_password": "password",
   "admin_secret": "secret",
