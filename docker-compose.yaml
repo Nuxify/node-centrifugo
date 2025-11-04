@@ -22,13 +22,13 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.centrifugo.entrypoints=http"
-      - "traefik.http.routers.centrifugo.rule=Host(`push.nuxify.tech`)"
+      - "traefik.http.routers.centrifugo.rule=Host(`${CENTRIFUGO_API_URL}`)"
       - "traefik.http.routers.centrifugo-secure.entrypoints=https"
-      - "traefik.http.routers.centrifugo-secure.rule=Host(`push.nuxify.tech`)"
+      - "traefik.http.routers.centrifugo-secure.rule=Host(`${CENTRIFUGO_API_URL}`)"
       - "traefik.http.routers.centrifugo-secure.tls=true"
       - "traefik.http.routers.centrifugo-secure.tls.certresolver=http"
       - "traefik.http.routers.centrifugo-secure.service=centrifugo"
-      - "traefik.http.services.centrifugo.loadbalancer.server.port=8000"
+      - "traefik.http.services.centrifugo.loadbalancer.server.port=${CENTRIFUGO_API_PORT}"
       - "traefik.docker.network=proxy"
 
 # remove if not needed
