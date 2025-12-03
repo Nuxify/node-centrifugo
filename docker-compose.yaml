@@ -18,7 +18,6 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - ./config.json:/centrifugo/config.json
-    # remove if not needed
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.centrifugo.entrypoints=http"
@@ -31,7 +30,6 @@ services:
       - "traefik.http.services.centrifugo.loadbalancer.server.port=${CENTRIFUGO_API_PORT}"
       - "traefik.docker.network=proxy"
 
-# remove if not needed
 networks:
   proxy:
     external: true
