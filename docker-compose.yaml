@@ -1,7 +1,7 @@
 services:
   centrifugo:
     image: centrifugo/centrifugo:v5.4.9
-    container_name: centrifugo
+    container_name: ${CENTRIFUGO_API_NAME}
     mem_limit: "3g"
     restart: unless-stopped
     logging:
@@ -20,14 +20,14 @@ services:
       - ./config.json:/centrifugo/config.json
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.centrifugo.entrypoints=http"
-      - "traefik.http.routers.centrifugo.rule=Host(`${CENTRIFUGO_API_URL}`)"
-      - "traefik.http.routers.centrifugo-secure.entrypoints=https"
-      - "traefik.http.routers.centrifugo-secure.rule=Host(`${CENTRIFUGO_API_URL}`)"
-      - "traefik.http.routers.centrifugo-secure.tls=true"
-      - "traefik.http.routers.centrifugo-secure.tls.certresolver=http"
-      - "traefik.http.routers.centrifugo-secure.service=centrifugo"
-      - "traefik.http.services.centrifugo.loadbalancer.server.port=${CENTRIFUGO_API_PORT}"
+      - "traefik.http.routers.${CENTRIFUGO_API_NAME}.entrypoints=http"
+      - "traefik.http.routers.${CENTRIFUGO_API_NAME}.rule=Host(`${CENTRIFUGO_API_URL}`)"
+      - "traefik.http.routers.${CENTRIFUGO_API_NAME}-secure.entrypoints=https"
+      - "traefik.http.routers.${CENTRIFUGO_API_NAME}-secure.rule=Host(`${CENTRIFUGO_API_URL}`)"
+      - "traefik.http.routers.${CENTRIFUGO_API_NAME}-secure.tls=true"
+      - "traefik.http.routers.${CENTRIFUGO_API_NAME}-secure.tls.certresolver=http"
+      - "traefik.http.routers.${CENTRIFUGO_API_NAME}-secure.service=${CENTRIFUGO_API_NAME}"
+      - "traefik.http.services.${CENTRIFUGO_API_NAME}.loadbalancer.server.port=${CENTRIFUGO_API_PORT}"
       - "traefik.docker.network=proxy"
 
 networks:
